@@ -1,0 +1,13 @@
+/* Plain inline links here, not the global blue navigation-button style. */
+a.book-link:link, a.book-link:visited {
+  background-color: transparent;
+  color: #0000b3;
+  padding: 0;
+  display: inline;
+  text-decoration: underline;
+}
+
+a.book-link:hover, a.book-link:active {
+  background-color: transparent;
+  color: #e60000;
+}

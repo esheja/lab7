@@ -1,0 +1,22 @@
+<div>
+  <h2>Search our Authors</h2>
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="row g-2 align-items-center">
+    <div class="col-auto">
+      <label for="authorId" class="col-form-label">Author Id:</label>
+    </div>
+    <div class="col-auto">
+      <input type="text" id="authorId" class="form-control" formControlName="authorId">
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </form>
+  @if (authorId.touched && authorId.invalid) {
+    <div class="alert alert-danger mt-2">
+      Please enter a valid author id (a positive whole number).
+    </div>
+  }
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>

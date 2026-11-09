@@ -1,0 +1,45 @@
+@if (loading) {
+  <p>Looking up author {{ requestedId }}...</p>
+} @else if (selectedAuthor) {
+  <div>
+    <h2>Here are details of the Author {{ selectedAuthor.id }}</h2>
+    <div class="row">
+      <div class="col-3">First Name:</div>
+      <div class="col-9">{{ selectedAuthor.firstName }}</div>
+    </div>
+    <div class="row">
+      <div class="col-3">Last Name:</div>
+      <div class="col-9">{{ selectedAuthor.lastName }}</div>
+    </div>
+    @if (bio) {
+      <div class="row">
+        <div class="col-3">Biography:</div>
+        <div class="col-9">{{ bio }}</div>
+      </div>
+    }
+    <div class="row">
+      <div class="col-3">Books:</div>
+      <div class="col-9">
+        @if (selectedAuthor.books?.length) {
+          <ul class="list-unstyled mb-0">
+            @for (book of selectedAuthor.books; track $index) {
+              <li>
+                @if (bookId(book); as id) {
+                  <a class="book-link" [routerLink]="['/books', id]">{{ book.title }}</a>
+                } @else {
+                  {{ book.title }}
+                }
+              </li>
+            }
+          </ul>
+        } @else {
+          <em>No books recorded for this author.</em>
+        }
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="alert alert-warning">
+    <h2 class="h5 mb-0">{{ errorMessage }}</h2>
+  </div>
+}
